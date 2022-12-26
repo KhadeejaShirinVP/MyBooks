@@ -2,7 +2,7 @@
 
 namespace BooksWeb.Models
 {
-    public class BookModel
+    public class Book
     {
         [Key]
         public int Book_ID { get; set; }
