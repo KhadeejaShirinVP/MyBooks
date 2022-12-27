@@ -73,10 +73,10 @@ namespace BooksWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Book book)
         {
-            if(book.Title==book.Author.ToString())
-            {
-                ModelState.AddModelError("Title", "The Author can't exactly match the Title");
-            }
+            //if(book.Title==book.Author.ToString())
+            //{
+            //    ModelState.AddModelError("Title", "The Author can't exactly match the Title");
+            //}
             if (ModelState.IsValid)
             {
                 _dbContext.Books.Update(book);
@@ -105,16 +105,16 @@ namespace BooksWeb.Controllers
         }
 
         //Post
-        [HttpPost,ActionName("Delete")]
+        [HttpPost/*,ActionName("Delete")*/]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteBook(int? bookId)
+        public IActionResult DeleteBook(int? book_Id)
         {
-            var book = _dbContext.Books.Find(bookId);
-            if(book == null)
+            var bkId = _dbContext.Books.Find(book_Id);
+            if(bkId == null)
             {
                 return NotFound();
             }
-            _dbContext.Books.Remove(book);
+            _dbContext.Books.Remove(bkId);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
